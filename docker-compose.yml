@@ -1,0 +1,20 @@
+version: '3.8'
+services: 
+  web:
+    build: .
+    command: node server.js
+    volumes: 
+      - .:/usr/app/
+      - /usr/app/node_modules 
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres 
+    environment:
+      DATABASE_URL: postgres://docker_node@postgres/node 
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: node 
+      POSTGRES_PASSWORD: password 
