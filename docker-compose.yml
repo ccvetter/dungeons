@@ -1,20 +1,33 @@
 version: '3.8'
 services: 
-  web:
+  # Setup node 
+  server:
     build: .
     command: node server.js
     volumes: 
-      - .:/usr/app/
-      - /usr/app/node_modules 
+      - .:/usr/server/
+      - /usr/server/node_modules 
     ports:
       - "8080:8080"
     depends_on:
       - postgres 
     environment:
-      DATABASE_URL: postgres://docker_node@postgres/node 
+      DATABASE_URL: postgres://dungeons@postgres/dungeons 
   postgres:
     image: postgres
     environment:
       POSTGRES_USER: postgres
       POSTGRES_DB: node 
       POSTGRES_PASSWORD: password 
+
+  # Setup react client
+  client:
+    build: ./dragons
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./dragons/src:/usr/src/dragons/src 
+      - ./dragons/public:/usr/src/dragons/public 
+    links: 
+      - server 
+    command: npm run dev

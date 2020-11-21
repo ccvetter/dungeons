@@ -1,12 +1,15 @@
 {
-    "name": "docker_node",
+    "name": "dungeons",
     "version": "1.0.0",
-    "description": "Node.js on Docker",
+    "description": "Dungeons and Dragons reference",
+    "repository": "github:ccvetter/dungeons",
     "main": "server.js",
     "scripts": {
         "start": "node server.js"
     },
     "dependencies": {
-        "express": "^4.16.1"
+        "create-react-app": "^4.0.0",
+        "express": "^4.16.1",
+        "axios": "^0.21.0"
     }
 }
