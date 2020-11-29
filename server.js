@@ -1,6 +1,7 @@
 'use strict';
 
 const express = require('express');
+const cors = require('cors');
 
 // Constants
 const PORT = 8080;
@@ -8,17 +9,21 @@ const HOST = '0.0.0.0';
 
 // App
 const app = express();
-const DungeonAPI = require('./dungeons')
+const DungeonAPI = require('./dungeons');
+
+var corsOptions = {
+    origin: 'http://localhost:3000',
+    optionsSuccessStatus: 200
+}
+
+app.use(cors(corsOptions));
 
 app.get('/spells', async (req, res) => {
-    console.log('getting spells')
     let response;
     try {
         response = await DungeonAPI.getSpells();
-        console.log(response)
         res.send(response.data);
     } catch (err) {
-        console.log(err);
         res.status(500).send();
     }
 });
