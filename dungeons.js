@@ -1,6 +1,6 @@
 const axios = require("axios");
 
-const BASE_URL = 'https://www.dnd5eapi.co/api/'
+const BASE_URL = process.env.DND_API_URL
 
 module.exports = {
     getSpells: () => axios({

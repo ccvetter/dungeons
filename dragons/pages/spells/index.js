@@ -21,7 +21,7 @@ export default class Spells extends React.Component {
         const spells = this.state.spells.map((item, i) => (
             <div key={item.name}>
                 <h1>{ item.name }</h1>
-                <span>{ item.url }</span>
+                <a href={"https://www.dnd5eapi.co" + item.url}>{ item.url }</a>
             </div>
         ));
         

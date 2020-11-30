@@ -1,5 +1,9 @@
 'use strict';
 
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config()
+}
+
 const express = require('express');
 const cors = require('cors');
 
@@ -12,7 +16,7 @@ const app = express();
 const DungeonAPI = require('./dungeons');
 
 var corsOptions = {
-    origin: 'http://localhost:3000',
+    origin: process.env.CLIENT_URL,
     optionsSuccessStatus: 200
 }
 
