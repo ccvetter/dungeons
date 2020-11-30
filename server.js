@@ -23,18 +23,22 @@ var corsOptions = {
 app.use(cors(corsOptions));
 
 app.get('/spells', async (req, res) => {
+    query_api(DungeonAPI.getSpells(), res);
+});
+
+app.get('/skills', async (req, res) => {
+    query_api(DungeonAPI.getSkills(), res);
+})
+
+async function query_api(query, res) {
     let response;
     try {
-        response = await DungeonAPI.getSpells();
+        response = await query;
         res.send(response.data);
     } catch (err) {
         res.status(500).send();
     }
-});
-
-app.get('/', (req, res) => {
-    res.send("Hello World");
-});
+}
 
 app.listen(PORT, HOST);
 console.log(`Running on http://${HOST}:${PORT}`);

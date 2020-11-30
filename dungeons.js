@@ -16,5 +16,12 @@ module.exports = {
         headers: {
             "content-type": "application/json"
         }
+    }),
+    getSkills: () => axios({
+        method: "GET",
+        url: BASE_URL + 'skills',
+        headers: {
+            "content-type": "application/json"
+        }
     })
 }
